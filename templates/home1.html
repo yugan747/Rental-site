@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .container{
+            display: none;
+        }
+    </style>
+    <h1>This is the site to find the Rental rooms </h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="address">Address1</label>
+        <input type="text" name="address1" id="">
+        
+        <input type="submit" value="FindRent">
+        
+      
+    </form>
+    {% if counting %}
+   <h1>{{counting}} rooms availabe in searched area</h1>
+   <button onclick="show()">Pay and see the rooms</button>
+   {% endif%}
+  {% if counting == 0 %}
+  <h1>There is no room available</h1>
+  {% endif%}
+   
+   <div class="container">
+       {% if result%}
+       {% for res in result %}
+       {{res.Name}}
+       {{res.address}}
+       {{res.Pointlocation}}
+       {% endfor %}
+       
+      
+       {% endif %}
+       
+       
+   </div>
+    <script>
+        function show(){
+            document.getElementsByClassName("container")[0].style.display = "block";
+        }
+    </script>
+   
+    
+</body>
+</html>
